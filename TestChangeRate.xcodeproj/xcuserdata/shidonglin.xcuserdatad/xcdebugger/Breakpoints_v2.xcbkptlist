@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestChangeRate/viewcontrollers/ChangeRateViewController.swift"
-            timestampString = "590812992.943485"
+            timestampString = "590824954.169543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "pickerView(_:numberOfRowsInComponent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,13 +26,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestChangeRate/viewcontrollers/ChangeRateViewController.swift"
-            timestampString = "590812992.944214"
+            timestampString = "590824954.1700391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "pickerView(_:titleForRow:forComponent:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestChangeRate/viewcontrollers/ChangeRateViewController.swift"
+            timestampString = "590824954.1703171"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "didTapCancel()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestChangeRate.ChangeRateViewController.(didTapCancel in _F77A3E4207B281FB1DD55D63F02EF38C)() -&gt; ()"
+                  moduleName = "TestChangeRate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shidonglin/src/TestChangeRate/TestChangeRate/viewcontrollers/ChangeRateViewController.swift"
+                  timestampString = "590824588.1194741"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in TestChangeRate.ChangeRateViewController.(didTapCancel in _F77A3E4207B281FB1DD55D63F02EF38C)() -&gt; ()"
+                  moduleName = "TestChangeRate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shidonglin/src/TestChangeRate/TestChangeRate/viewcontrollers/ChangeRateViewController.swift"
+                  timestampString = "590824588.1236449"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

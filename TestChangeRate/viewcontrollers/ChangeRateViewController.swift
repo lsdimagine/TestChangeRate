@@ -12,6 +12,7 @@ import UIKit
 class ChangeRateViewController: UIViewController {
     private let controller: ChangeRateControllerProtocol = ChangeRateController.shared
     private let currencyPicker = UIPickerView()
+    private let pickerToolBar = UIToolbar()
     private let pickCurrenciesButton = UIButton(type: .system)
     private let getChangeRateButton = UIButton(type: .system)
     private let changeRateLabel = UILabel()
@@ -24,7 +25,6 @@ class ChangeRateViewController: UIViewController {
 
         view.backgroundColor = .white
         view.addSubview(pickCurrenciesButton)
-        view.addSubview(getChangeRateButton)
         view.addSubview(changeRateLabel)
         view.addSubview(currencyPicker)
 
@@ -38,21 +38,28 @@ class ChangeRateViewController: UIViewController {
         getChangeRateButton.translatesAutoresizingMaskIntoConstraints = false
         getChangeRateButton.isEnabled = false
 
+        let canButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapSubmit))
+        pickerToolBar.items = [canButton, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), doneButton]
+        view.addSubview(pickerToolBar)
+        pickerToolBar.translatesAutoresizingMaskIntoConstraints = false
+
         changeRateLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             pickCurrenciesButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
             pickCurrenciesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            getChangeRateButton.topAnchor.constraint(equalTo: pickCurrenciesButton.bottomAnchor, constant: 10.0),
-            getChangeRateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            changeRateLabel.topAnchor.constraint(equalTo: getChangeRateButton.bottomAnchor, constant: 10.0),
+            changeRateLabel.topAnchor.constraint(equalTo: pickCurrenciesButton.bottomAnchor, constant: 10.0),
             changeRateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pickerToolBar.heightAnchor.constraint(equalToConstant: 40.0),
+            pickerToolBar.widthAnchor.constraint(equalTo: currencyPicker.widthAnchor),
+            pickerToolBar.bottomAnchor.constraint(equalTo: currencyPicker.topAnchor),
         ])
 
         currencyPicker.backgroundColor = .lightGray
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
-        currencyPicker.frame = CGRect(x: 0.0, y: view.frame.height, width: view.frame.width, height: currencyPickerHeight)
+        currencyPicker.frame = CGRect(x: 0.0, y: view.frame.height + 40.0, width: view.frame.width, height: currencyPickerHeight)
 
         controller.fetchCurrencies { [weak self] in
             DispatchQueue.main.async {
@@ -67,6 +74,7 @@ class ChangeRateViewController: UIViewController {
     @objc private func didTapPick() {
         UIView.animate(withDuration: 1.0) {
             self.currencyPicker.frame = CGRect(x: 0.0, y: self.view.frame.height - self.currencyPickerHeight, width: self.currencyPicker.frame.width, height: self.currencyPicker.frame.height)
+            self.view.layoutIfNeeded()
         }
     }
 
@@ -82,7 +90,8 @@ class ChangeRateViewController: UIViewController {
                     }
                     strongSelf.changeRateLabel.text = "\(currency1.id) / \(currency2.id) = \(rate)"
                     UIView.animate(withDuration: 1.0) {
-                        strongSelf.currencyPicker.frame = CGRect(x: 0.0, y: strongSelf.view.frame.height, width: strongSelf.currencyPicker.frame.width, height: strongSelf.currencyPicker.frame.height)
+                        strongSelf.currencyPicker.frame = CGRect(x: 0.0, y: strongSelf.view.frame.height + 40.0, width: strongSelf.currencyPicker.frame.width, height: strongSelf.currencyPicker.frame.height)
+                        strongSelf.view.layoutIfNeeded()
                     }
                 }
             case .error:
@@ -92,10 +101,21 @@ class ChangeRateViewController: UIViewController {
                     }
                     strongSelf.changeRateLabel.text = "Fail to get change rate"
                     UIView.animate(withDuration: 1.0) {
-                        strongSelf.currencyPicker.frame = CGRect(x: 0.0, y: strongSelf.view.frame.height, width: strongSelf.currencyPicker.frame.width, height: strongSelf.currencyPicker.frame.height)
+                        strongSelf.currencyPicker.frame = CGRect(x: 0.0, y: strongSelf.view.frame.height + 40.0, width: strongSelf.currencyPicker.frame.width, height: strongSelf.currencyPicker.frame.height)
+                        strongSelf.view.layoutIfNeeded()
                     }
                 }
             }
+        }
+    }
+
+    @objc private func didTapCancel() {
+        UIView.animate(withDuration: 1.0) { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.currencyPicker.frame = CGRect(x: 0.0, y: strongSelf.view.frame.height + 40.0, width: strongSelf.currencyPicker.frame.width, height: strongSelf.currencyPicker.frame.height)
+            strongSelf.view.layoutIfNeeded()
         }
     }
 }
