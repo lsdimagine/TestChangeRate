@@ -13,6 +13,9 @@
 		D9470324233702160097F708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9470323233702160097F708 /* Assets.xcassets */; };
 		D9470327233702160097F708 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9470325233702160097F708 /* LaunchScreen.storyboard */; };
 		D9470332233702160097F708 /* TestChangeRateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9470331233702160097F708 /* TestChangeRateTests.swift */; };
+		D947033E2337023E0097F708 /* ChangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D947033D2337023E0097F708 /* ChangeRateViewController.swift */; };
+		D9470341233702750097F708 /* ChangeRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9470340233702750097F708 /* ChangeRateController.swift */; };
+		D947034423370C180097F708 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D947034323370C180097F708 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		D947032D233702160097F708 /* TestChangeRateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestChangeRateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9470331233702160097F708 /* TestChangeRateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestChangeRateTests.swift; sourceTree = "<group>"; };
 		D9470333233702160097F708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D947033D2337023E0097F708 /* ChangeRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateViewController.swift; sourceTree = "<group>"; };
+		D9470340233702750097F708 /* ChangeRateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateController.swift; sourceTree = "<group>"; };
+		D947034323370C180097F708 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,9 @@
 		D947031B233702150097F708 /* TestChangeRate */ = {
 			isa = PBXGroup;
 			children = (
+				D9470342233702990097F708 /* models */,
+				D947033F2337026B0097F708 /* controllers */,
+				D947033C233702280097F708 /* viewcontrollers */,
 				D947031C233702150097F708 /* AppDelegate.swift */,
 				D947031E233702150097F708 /* ViewController.swift */,
 				D9470320233702150097F708 /* Main.storyboard */,
@@ -94,6 +103,30 @@
 				D9470333233702160097F708 /* Info.plist */,
 			);
 			path = TestChangeRateTests;
+			sourceTree = "<group>";
+		};
+		D947033C233702280097F708 /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				D947033D2337023E0097F708 /* ChangeRateViewController.swift */,
+			);
+			path = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		D947033F2337026B0097F708 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D9470340233702750097F708 /* ChangeRateController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		D9470342233702990097F708 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				D947034323370C180097F708 /* Currency.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +230,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D947033E2337023E0097F708 /* ChangeRateViewController.swift in Sources */,
+				D947034423370C180097F708 /* Currency.swift in Sources */,
 				D947031F233702150097F708 /* ViewController.swift in Sources */,
 				D947031D233702150097F708 /* AppDelegate.swift in Sources */,
+				D9470341233702750097F708 /* ChangeRateController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
