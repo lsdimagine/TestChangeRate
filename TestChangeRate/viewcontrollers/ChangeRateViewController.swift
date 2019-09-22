@@ -71,8 +71,31 @@ class ChangeRateViewController: UIViewController {
     }
 
     @objc private func didTapSubmit() {
-        UIView.animate(withDuration: 1.0) {
-            self.currencyPicker.frame = CGRect(x: 0.0, y: self.view.frame.height, width: self.currencyPicker.frame.width, height: self.currencyPicker.frame.height)
+        let currency1 = controller.currencies[currencyPicker.selectedRow(inComponent: 0)]
+        let currency2 = controller.currencies[currencyPicker.selectedRow(inComponent: 1)]
+        controller.fetchChangeRate(currency1, currency2) { [weak self] (result) in
+            switch(result) {
+            case .success(let rate):
+                DispatchQueue.main.async {
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.changeRateLabel.text = "\(currency1.id) / \(currency2.id) = \(rate)"
+                    UIView.animate(withDuration: 1.0) {
+                        strongSelf.currencyPicker.frame = CGRect(x: 0.0, y: strongSelf.view.frame.height, width: strongSelf.currencyPicker.frame.width, height: strongSelf.currencyPicker.frame.height)
+                    }
+                }
+            case .error:
+                DispatchQueue.main.async {
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.changeRateLabel.text = "Fail to get change rate"
+                    UIView.animate(withDuration: 1.0) {
+                        strongSelf.currencyPicker.frame = CGRect(x: 0.0, y: strongSelf.view.frame.height, width: strongSelf.currencyPicker.frame.width, height: strongSelf.currencyPicker.frame.height)
+                    }
+                }
+            }
         }
     }
 }

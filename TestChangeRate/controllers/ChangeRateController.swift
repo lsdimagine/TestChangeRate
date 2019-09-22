@@ -8,9 +8,14 @@
 
 import Foundation
 
+enum GetChangeRateResult {
+    case success(Double)
+    case error
+}
+
 protocol ChangeRateControllerProtocol {
     func fetchCurrencies(_ completion: @escaping (() -> Void))
-    func fetchChangeRate(_ currency: Currency, _ completion: @escaping (() -> Void))
+    func fetchChangeRate(_ currency1: Currency, _ currency2: Currency, _ completion: @escaping ((GetChangeRateResult) -> Void))
     var currencies: [Currency] { get }
 }
 
@@ -39,7 +44,28 @@ class ChangeRateController: ChangeRateControllerProtocol {
         }.resume()
     }
 
-    func fetchChangeRate(_ currency: Currency, _ completion: @escaping (() -> Void)) {
-        
+    func fetchChangeRate(_ currency1: Currency, _ currency2: Currency, _ completion: @escaping ((GetChangeRateResult) -> Void)) {
+        let urlString = "https://api.coinbase.com/v2/exchange-rates?currency=\(currency1.id)"
+        guard let url = URL(string: urlString) else {
+            completion(.error)
+            return
+        }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                completion(.error)
+                return
+            }
+            do {
+                let changeRatesResponse = try JSONDecoder().decode(GetChangeRateResponse.self, from: data)
+                let ratesData = changeRatesResponse.data
+                if let rate = ratesData.rates[currency2.id], let numRate = Double(rate) {
+                    completion(.success(numRate))
+                } else {
+                    completion(.error)
+                }
+            } catch {
+
+            }
+        }.resume()
     }
 }
